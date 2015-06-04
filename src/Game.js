@@ -3,14 +3,13 @@ function Game () {
   this.currentFrameNumber = 1
   this.playing = true
   this.frames = []
-  this.bonusRolls = false
+  this.bonusRolls = true
 };
 
 Game.prototype.scoreCalculate = function() {
   this.spareScoreCalc()
   this.strikeScoreCalc()
   this.scoreUpdate()
-  this.bonusScoreUpdate()
 };
 
 Game.prototype.roll = function(firstBall, secondBall) {
@@ -56,7 +55,6 @@ Game.prototype._isGameOver = function() {
       this.playing = false
     }
     else if (this.frames[9].strike) {
-      this.bonusRolls = true
       this.playing = true
     }
   }

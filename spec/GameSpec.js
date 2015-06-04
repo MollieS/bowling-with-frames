@@ -66,17 +66,17 @@ describe ("Game", function(){
       expect(game.totalScore).toBe(37)
     });
   });
-  describe("ending a game", function(){
+  describe("final frame", function(){
 
-    it("if the last frame has a strike, has 2 more rolls", function(){
-      for (i = 0; i < 10; i++){
+    it("if strike, has 2 more rolls", function(){
+      for (i = 0; i <= 10; i++){
         game.roll(0, 0)
       }
       game.roll(10, 0)
       expect(game.bonusRolls).toBe(true)
     });
 
-    it("if the last frame has a strike, ", function(){
+    it("if strike, gets more points ", function(){
       for (i = 0; i < 10; i++){
         game.roll(0, 0)
       }
