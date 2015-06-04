@@ -3,13 +3,17 @@ function Game () {
   this.currentFrameNumber = 1
   this.playing = true
   this.frames = []
-  this.bonusFrames = []
 };
 
 Game.prototype._isGameOver = function() {
-  if (this.currentFrameNumber > 10) {
-    this.playing = false
-  };
+  if (this.currentFrameNumber >= 11) {
+    if (this.frames[9].strike === false){
+      this.playing = false
+    }
+  }
+  else {
+      this.playing = true
+  }
 };
 
 Game.prototype.spareScoreCalc = function() {
@@ -43,7 +47,6 @@ Game.prototype.strikeScoreCalc = function(first_argument) {
   }
 };
 
-
 Game.prototype.scoreCalculate = function() {
   this.spareScoreCalc()
   this.strikeScoreCalc()
@@ -69,5 +72,12 @@ Game.prototype.roll = function(firstBall, secondBall) {
   }
   else {
     return "Game is Over"
+  }
+};
+
+Game.prototype.bonusGame = function() {
+  if (this.bonusRolls === true){
+    var frame = new Frame(firstBall, secondBall)
+    bonusFrames.push(frame)
   }
 };

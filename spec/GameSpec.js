@@ -19,16 +19,19 @@ describe ("Game", function(){
     });
 
     it("has only ten frames", function(){
-      game.currentFrameNumber = 11;
-      game.roll(1, 2);
+      for (i = 0; i < 11; i ++) {
+        game.roll(1, 2);
+      }
+      game.roll(1, 1)
       expect(game.playing).toBe(false);
     });
 
     it("you cannot roll when game is over", function(){
-      game.currentFrameNumber = 11;
-      game.totalScore = 25
+      for (i = 0; i < 11; i++) {
+        game.roll(1, 0)
+      }
       game.roll(4, 5)
-      expect(game.totalScore).toBe(25);
+      expect(game.totalScore).toBe(10);
     });
 
   });
@@ -63,7 +66,7 @@ describe ("Game", function(){
       expect(game.totalScore).toBe(37)
     });
     it("if the last frame has a strike, has 2 more rolls", function(){
-      game.currentFrameNumber = 10
+      game.currentFrameNumber = 9
       game.totalScore = 20
       game.roll(10, 0)
       game.roll(0, 1)
