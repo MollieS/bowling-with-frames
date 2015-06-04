@@ -65,12 +65,25 @@ describe ("Game", function(){
       game.roll(1, 2);
       expect(game.totalScore).toBe(37)
     });
+  });
+  describe("ending a game", function(){
+
     it("if the last frame has a strike, has 2 more rolls", function(){
-      game.currentFrameNumber = 9
-      game.totalScore = 20
+      for (i = 0; i < 10; i++){
+        game.roll(0, 0)
+      }
+      game.roll(10, 0)
+      expect(game.bonusRolls).toBe(true)
+    });
+
+    it("if the last frame has a strike, ", function(){
+      for (i = 0; i < 10; i++){
+        game.roll(0, 0)
+      }
       game.roll(10, 0)
       game.roll(0, 1)
-      expect(game.totalScore).toBe(31)
+      expect(game.totalScore).toBe(11)
+
     });
   });
 
