@@ -4,6 +4,7 @@ function Frame (firstRoll, secondRoll) {
   this.secondRoll = secondRoll
   this.spare = false
   this.strike = false
+  this.score = 0
 };
 
 Frame.prototype.hits = function() {
@@ -11,6 +12,7 @@ Frame.prototype.hits = function() {
   this.isAStrike();
   this.pins -= this.secondRoll
   this.isASpare();
+  this.calculateScore()
 };
 
 Frame.prototype.isASpare = function() {
@@ -22,5 +24,11 @@ Frame.prototype.isASpare = function() {
 Frame.prototype.isAStrike = function() {
   if (this.pins === 0){
     this.strike = true
+  }
+};
+
+Frame.prototype.calculateScore = function() {
+  if (this.strike === false && this.spare === false) {
+    this.score += this.firstRoll + this.secondRoll;
   }
 };
