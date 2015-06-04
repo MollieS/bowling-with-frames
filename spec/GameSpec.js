@@ -40,6 +40,28 @@ describe ("Game", function(){
       game.roll(4, 4);
       expect(game.totalScore).toBe(22);
     })
+
+    it("can score two spares", function(){
+      game.roll(5, 5);
+      game.roll(6, 4);
+      game.roll(1, 2);
+      expect(game.totalScore).toBe(30)
+    });
+  });
+
+  describe("strikes", function(){
+    it("can score a strike", function(){
+      game.roll(10, 0);
+      game.roll(4, 3);
+      expect(game.totalScore).toBe(24);
+    });
+
+    it("can score two strikes in a row", function(){
+      game.roll(10, 0);
+      game.roll(10, 0);
+      game.roll(1, 2);
+      expect(game.totalScore).toBe(37)
+    });
   });
 
 });

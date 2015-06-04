@@ -5,6 +5,7 @@ function Frame (firstRoll, secondRoll) {
   this.spare = false
   this.strike = false
   this.score = 0
+  this.updated = false
 };
 
 Frame.prototype.hits = function() {

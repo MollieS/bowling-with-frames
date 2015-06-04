@@ -22,8 +22,30 @@ Game.prototype.spareScoreCalc = function() {
   }
 };
 
+Game.prototype.strikeScoreCalc = function(first_argument) {
+  var now = this.currentFrameNumber -1
+  var before = this.currentFrameNumber -2
+  var beforeThat = this.currentFrameNumber -3
+  previousFrame = this.frames[before]
+  currentFrame = this.frames[now]
+  starterFrame = this.frames[beforeThat]
+  if (previousFrame.strike === true)
+  {
+    if(currentFrame.strike === false){
+      previousFrame.score += currentFrame.score
+      previousFrame.updated = true
+    }
+   }
+  else if (this.frames.length > 2 && starterFrame.strike === true && starterFrame.updated === false){
+    starterFrame.score += currentFrame.firstRoll + previousFrame.firstRoll
+    starterFrame.updated = true
+  }
+};
+
+
 Game.prototype.scoreCalculate = function() {
   this.spareScoreCalc()
+  this.strikeScoreCalc()
   this.totalScore = 0
   var now = this.currentFrameNumber -1
   for (i = 0; i < this.frames.length; i++) {
