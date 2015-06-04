@@ -13,14 +13,19 @@ describe ("Game", function(){
       expect(game.totalScore).toBe(7);
     });
 
+    it ("keeps track of frames", function(){
+      game.roll(1, 2);
+      expect(game.currentFrameNumber).toBe(2)
+    });
+
     it("has only ten frames", function(){
-      game.currentFrame = 11;
+      game.currentFrameNumber = 11;
       game.roll(1, 2);
       expect(game.playing).toBe(false);
     });
 
     it("you cannot roll when game is over", function(){
-      game.currentFrame = 11;
+      game.currentFrameNumber = 11;
       game.totalScore = 25
       game.roll(4, 5)
       expect(game.totalScore).toBe(25);

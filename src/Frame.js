@@ -28,7 +28,5 @@ Frame.prototype.isAStrike = function() {
 };
 
 Frame.prototype.calculateScore = function() {
-  if (this.strike === false && this.spare === false) {
-    this.score += this.firstRoll + this.secondRoll;
-  }
+    this.score += (this.firstRoll + this.secondRoll);
 };
