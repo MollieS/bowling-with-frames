@@ -62,6 +62,13 @@ describe ("Game", function(){
       game.roll(1, 2);
       expect(game.totalScore).toBe(37)
     });
+    it("if the last frame has a strike, has 2 more rolls", function(){
+      game.currentFrameNumber = 10
+      game.totalScore = 20
+      game.roll(10, 0)
+      game.roll(0, 1)
+      expect(game.totalScore).toBe(31)
+    });
   });
 
 });

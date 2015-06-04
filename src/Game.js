@@ -3,6 +3,7 @@ function Game () {
   this.currentFrameNumber = 1
   this.playing = true
   this.frames = []
+  this.bonusFrames = []
 };
 
 Game.prototype._isGameOver = function() {
@@ -36,7 +37,7 @@ Game.prototype.strikeScoreCalc = function(first_argument) {
       previousFrame.updated = true
     }
    }
-  else if (this.frames.length > 2 && starterFrame.strike === true && starterFrame.updated === false){
+  if (this.frames.length > 2 && starterFrame.strike === true && starterFrame.updated === false){
     starterFrame.score += currentFrame.firstRoll + previousFrame.firstRoll
     starterFrame.updated = true
   }
@@ -58,8 +59,8 @@ Game.prototype.roll = function(firstBall, secondBall) {
   frame.hits()
   this.frames.push(frame)
   this._isGameOver()
-  if ( this.playing === true && this.frames.length === 1) {
-    this.totalScore += firstBall + secondBall;
+  if (this.playing === true && this.frames.length === 1) {
+    this.totalScore += this.frames[0].score
     this.currentFrameNumber += 1;
   }
   else if (this.playing === true && this.frames.length > 1){
